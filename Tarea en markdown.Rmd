@@ -1,0 +1,62 @@
+---
+title: "Tarea_1"
+author: "Rodrigo L"
+date: "September 26, 2016"
+output: html_document
+---
+
+#Tarea 1
+salarios= read.csv(file = "data/salarios-2016.csv", encoding = "UTF-8")
+**chequeamos que se leyo correctamente**
+
+1.No olvidar de ir cargando los paquetes a utilizar:
+
+library("tidyr")
+
+library("dplyr")
+
+library(plyr)
+
+```{r Salarios-2016}
+salarios= read.csv(file = "data/salarios-2016.csv", encoding = "UTF-8")
+head(salarios)#chequeo que se haya cargado ok#
+str(salarios)
+```
+
+Para el uso de dply habria que cargarlo (o tambien descargarlo)
+
+```{r llamado a dply}
+library(dplyr)
+```
+
+
+Ejercicio 6
+
+```{r presidente}
+Presidente <- salarios %>%
+  filter(cargo == "Presidente")
+Presidente
+```
+
+
+Ejercicios 7 y 8
+```{r max_y_minimos}
+salarios[which.max(salarios$asignacion_mensual),]
+salarios[which.min(salarios$asignacion_mensual),]
+
+```
+
+Ejercicio 9: nueva fila con los datos de uno
+
+
+
+Ejercicio 10: Asignando una nueva columna con mutate.
+
+
+```{r nueva columna con sueldos acumulados}
+salarios2 <- salarios %>% 
+  mutate(sueldo_acumulado = cumsum(asignacion_mensual) )
+head(salarios2)
+
+```
+
